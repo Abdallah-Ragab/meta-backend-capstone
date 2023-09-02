@@ -1,5 +1,6 @@
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
+from rest_framework.authtoken.views import obtain_auth_token
 from .views import index
 from .views import MenuItemView, SingleMenuItemView, BookingViewSet
 
@@ -11,4 +12,5 @@ urlpatterns = [
     path('menu/', MenuItemView.as_view()),
     path('menu/<int:pk>', SingleMenuItemView.as_view()),
     path('booking/', include(router.urls)),
+    path('api-token-auth/', obtain_auth_token)
 ]
