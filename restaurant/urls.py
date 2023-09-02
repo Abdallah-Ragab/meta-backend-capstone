@@ -7,10 +7,12 @@ from .views import MenuItemView, SingleMenuItemView, BookingViewSet
 router = DefaultRouter()
 router.register(r'tables', BookingViewSet)
 
+app_name = 'restaurant'
+
 urlpatterns = [
     path('', index, name='index'),
-    path('menu/', MenuItemView.as_view()),
-    path('menu/<int:pk>', SingleMenuItemView.as_view()),
-    path('booking/', include(router.urls)),
-    path('api-token-auth/', obtain_auth_token)
+    path('menu/', MenuItemView.as_view(), name='menu'),
+    path('menu/<int:pk>', SingleMenuItemView.as_view(), name='single_menu'),
+    path('booking/', include(router.urls), name='booking'),
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth')
 ]
